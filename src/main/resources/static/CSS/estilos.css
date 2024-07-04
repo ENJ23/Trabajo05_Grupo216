@@ -1,0 +1,111 @@
+@charset "UTF-8";
+
+.main-title{
+	text-align: center;
+}
+.container{
+	width: 80%; /* Ancho del contenedor */
+    max-width: 1200px; /* Ancho máximo del contenedor */
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+    padding: 20px; /* Espaciado interno del contenedor */
+    background-color: #f2f2f2; /* Color de fondo del contenedor */
+    border: 1px solid #ccc; /* Borde del contenedor */
+    border-radius: 8px; /* Radio de borde para esquinas redondeadas */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra del contenedor */
+}
+.info-facultad{
+	margin:20px;
+	padding:40px;
+	border:30px;
+}
+
+.navbar-brand{
+	margin: 10px;
+	width: 30%;
+}
+.principal{
+	background-color: #BEFCFF;
+}
+.section-noticias{
+	margin:10px;
+	padding:30px;
+	border:20px;	
+}
+
+.bloque-aside{
+	background-color: #f2f2f2; /* Color de fondo del bloque */
+    padding: 10px; /* Espaciado interno del bloque */
+    margin-bottom: 15px; /* Margen inferior del bloque */
+    border: 1px solid #ccc; /* Borde del bloque */
+    border-radius: 5px; /* Esquinas redondeadas */
+    overflow: hidden; /* Oculta el texto que sobresale del contenedor */
+    word-wrap: break-word; /* Rompe las palabras largas para ajustarse al contenedor */
+}
+.img-aside{
+	max-width: 100%; /* Ajusta la imagen al ancho del contenedor */
+    height: auto; /* Permite que la altura se ajuste proporcionalmente */
+    display: block; /* Establece la imagen como un bloque */
+    margin: 0 auto; /* Centra la imagen horizontalmente */
+}
+.noticias{
+	padding: 30px;
+	margin:0;
+	border: 10px;
+/* 	display: flex;
+    justify-content: center;
+    align-items: center; */
+}
+.card{
+	margin-left: 55px;
+	margin-right:20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.card-der{
+	margin-right: 0px;
+}
+.card-img-top{
+	margin-top: 10px;
+}
+.accordion {
+	margin:10px;
+	padding:30px;
+	border:20px;		
+}
+
+.footer-page {
+    background-color: #333;
+    color: #fff;
+    text-align: left;
+    padding: 10px 0;
+    bottom: 0;
+    width: 100%;
+}
+.tit-footer{
+	margin: 10px;
+	padding: 10px;
+}
+.ulist {
+	list-style-type: none;
+}
+.ulist-1{
+	list-style-type: square;
+}
+.copyright{
+	text-decoration:overline;
+	text-align: center;
+	background-color: #535F5F;
+}
+
+a {
+    text-decoration: none; /* Elimina el subrayado predeterminado */
+    color: inherit; /* Hereda el color del texto del elemento padre */
+    transition: color 0.3s; /* Transición suave del color */
+
+}
+
+a:hover {
+    color: #0056b3; /* Cambia el color al pasar el cursor sobre el enlace */
+}
+
+
