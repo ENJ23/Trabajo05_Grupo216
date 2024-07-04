@@ -52,7 +52,7 @@ public class MateriaServiceImp implements MateriaService {
     }
 
     @Override
-    public void modificarMateria(MateriaDTO materiaModificada) {
+    public void modificarMateria(Materia materiaModificada) {
         LOGGER.info("Iniciando método modificarMateria");
         Materia materiaBuscada = buscarMateria(materiaModificada.getCodigo());
         if (materiaBuscada != null) {
@@ -60,7 +60,7 @@ public class MateriaServiceImp implements MateriaService {
             for (int i = 0; i < todasLasMaterias.size(); i++) {
                 MateriaDTO materia = materiaMapDTO.convertirMateriaAMateriaDTO(todasLasMaterias.get(i));
                 if (materia.getCodigo().equals(materiaModificada.getCodigo())) {
-                    todasLasMaterias.set(i, materiaMapDTO.convertirMateriaDTOAMateria(materiaModificada));
+                    todasLasMaterias.set(i,materiaModificada);
                     break;
                 }
             }

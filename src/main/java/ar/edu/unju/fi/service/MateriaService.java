@@ -13,7 +13,7 @@ public interface MateriaService {
 	public void guardarMateria(Materia materiaParaGuardar);
 	public List<Materia> mostrarMateria();
 	public void borrarMateria(String codigo);
-	public void modificarMateria(MateriaDTO materiaModificada);
+	public void modificarMateria(Materia materiaExistente);
 	public Materia buscarMateria(String codigo);
 	public Materia findMateriaByCodigo(String codigo);
 	public Boolean existeMateria(Materia materiaParaGuardar);
