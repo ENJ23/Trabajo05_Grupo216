@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	data-th-href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+<head>
+    <meta charset="UTF-8">
+    <title>Inscripción de Alumno en Materia</title>
+</head>
+<body>
+
+	<div data-th-replace="~{fragments/header :: navbar}"></div>
+    <h1>Inscripción de Alumno en Materia</h1>
+    
+    <form data-th-object="${nuevaInscripcion}" 
+    
+    data-th-action=" @{/guardarInscripcion}" method="POST">
+        
+        <div class="col-sm-6">
+        <label for="alumno" class="form-label">Selecciona un Alumno:</label>
+        <select id="alumno" name="alumno" class="form-control">
+            <option data-th-each="alumno : ${alumnos}" data-th-value="${alumno.lu}" data-th-text="${alumno.nombre + ' ' + alumno.apellido}"></option>
+        </select>
+        </div>
+        <br>
+        <div class="col-sm-6">
+        <label for="materia" class="form-label">Selecciona una Materia:</label>
+        <select id="materia" name="materia" class="form-control">
+            <option data-th-each="materia : ${materias}" data-th-value="${materia.codigo}" data-th-text="${materia.nombre}"></option>
+        </select>
+        </div>
+        <br>
+        
+        <button type="submit">Inscribir Alumno</button>
+    </form>
+    
+    
+    <script data-th-src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
+		
+</body>
+</html>
+
+
+
+
+
+
+<<!-- !DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	data-th-href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+
+<title>Formulario Alumnos</title>
+</head>
+<body>
+	<div class="container">
+	<div data-th-replace="~{fragments/header :: navbar}"></div>
+		<h1>Inscripción de Alumnos</h1>
+		<form data-th-object="${nuevoAlumno}" 
+		data-th-action="${band}?@{/modificarAlumno}:@{/guardarAlumno}" 
+		method="post">
+		
+    	<form action="/inscripcion/nueva" method="post">
+        <label for="nombreAlumno">Nombre del Alumno:</label>
+        <input type="text" id="nombreAlumno" name="nombreAlumno"><br><br>
+        
+        <label for="materia">Materia:</label>
+        <input type="text" id="materia" name="materia"><br>
+        
+        <button type="submit">Inscribir</button>
+    	</form>
+    
+    
+ </div>  
+    
+	<script data-th-src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
+
+		</body>
+</html> -->
