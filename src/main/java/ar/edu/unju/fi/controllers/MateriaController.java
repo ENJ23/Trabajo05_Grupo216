@@ -82,6 +82,7 @@ public class MateriaController {
             Materia materiaParaModificar = materiaService.buscarMateria(codigo);
             modelView.addObject("nuevaMateria", materiaParaModificar);
             modelView.addObject("band", true);
+            modelView.addObject("doc",docenteService.mostrarDocentes());
         } catch (Exception e) {
             modelView.addObject("errors", true);
             modelView.addObject("buscarMateriaErrorMessage", "Error al buscar la materia en la BD: " + e.getMessage());
