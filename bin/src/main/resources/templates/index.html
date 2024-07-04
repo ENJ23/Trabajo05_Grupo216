@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang = "es" xmlns:th="https://www.thymeleaf.org">
+<!-- utilizar: "data-th-etiqueta" -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tp 04</title>
+<link rel="stylesheet" href="/CSS/estilos.css">
+		<!--Import estilos de la dependencia bootstrap-->
+<!--<link rel="stylesheet" data-th-href="@{/web_jars/bootstrap/5.3.3/css/bootstrap.min.css}">
+
+		<!--Import Bootstrap-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+
+	<header class="header-navbar">
+		<div data-th-replace="~{fragments/header::navbar}" ></div>
+	</header>
+<div class="container-fluid">
+	<div class="row">
+		<main class="principal col-9">
+			<div class="info-facultad">
+			<h2>¿Qué es la Facultad de Ingeniería?</h2>
+			<p>La Facultad de Ingeniería (FIUBA) es una de las trece unidades funcionales en que se divide la Universidad de Buenos Aires, número 66 en el ranking QS. Se dictan en ella 12 carreras de grado, siendo la última en ofrecerse Ingeniería en Petróleo, y numerosos cursos de posgrado. Si bien funciona con el nombre actual desde 1952, ya era parte de la Facultad de Ciencias Exactas y Naturales desde el siglo xix. El primer Ingeniero argentino fue Luis A. Huergo, que obtuvo su diploma el 6 de junio de 1870. La primera Ingeniera argentina fue Elisa Bachofen, quien se graduó en diciembre de 1918.</p>
+			<h3>Sedes</h3>		
+				La facultad funcionó muchos años en la Manzana de las Luces, en el edificio de la calle Perú 222, hasta que en 1948 recibió el de la Avenida Las Heras 2214, y en 1956 el de Avenida Paseo Colón 850.
+				</div>
+				<div class="section-noticias" id="noticias">
+				<h2>Algunas Carreras Disponibles</h2>
+				
+				<h4 class="tit-noticias" id="informatica">Ingenieria Informática</h4>
+				
+				<p class="text-noticias"> La ingeniería informática es la rama de la ingeniería que aplica los fundamentos de la ciencia de la computación, la ingeniería en computadores, la ingeniería de sistemas de información, la ingeniería de software y la ingeniería de redes y comunicaciones, para el desarrollo de todo tipo de software, hardware computacional y comunicaciones. Es la ingeniera encargada de estudiar la computacion y sus aplicaciones en el mundo.</p>
+				
+				<h4 class="tit-noticias" id="quimica">Ingenieria en Quimica</h4>
+				<p class="text-noticias">La Ingeniería Quimica es la rama que se encarga del estudio, síntesis, desarrollo, diseño, operación y optimización de todos aquellos procesos industriales que producen cambios físicos, químicos y/o bioquímicos en los materiales.</p>
+				<h4 class="tit-noticias" id="minas">Ingenieria en Minas</h4>
+				<p class="text-noticias">La ingeniería de minas es la rama de la ingeniería que se ocupa de la extracción de los recursos minerales. Teniendo en cuenta la mayor especialización que cada vez requiere la sociedad. La ingeniería de minas centra sus esfuerzos en actividades como:
+						</p> 
+				    <ul>
+				    	<li>La extracción mediante técnicas y labores mineras de los recursos minerales. El conocimiento y el uso en la ingeniería de explosivos.
+				    	<li>Obtención de licencias y ejecución de planes de labores así como planificación.
+				    	<li>Ingeniero de operaciones in situ en mina.
+				    </ul> 
+			             
+		</div>
+		<h3 class="tit-noticias">Noticias Del Dia</h3>
+		<section class="noticias row">
+				<div class="card col-3" style="width: 20rem;">
+			  <img src="img/charla-computacion-noticia.jpeg" class="card-img-top" alt="...">
+			  <div class="card-body">
+			    <h5 class="card-title">Charla de Computacion</h5>
+			    <p class="card-text">Charla COMPUTACIÓN DE ALTO RENDIMIENTO Y BIOMETRÍA
+				Destinado a estudiantes avanzados, de postgrado y graduados en Ciencias de la Computación e Informática.</p><br>
+				<p class="card-text"><strong>Viernes 7 de junio/2024 - 18:30 hs - AULA 11</strong></p>
+			    <a href="#" class="btn btn-primary">Ir al Formulario</a>
+			  </div>
+			</div>
+				<div class="card card-der col-3" style="width: 20rem;">
+				<img src="https://fi.unju.edu.ar/images/2024-Noticias/taller-autocuidado-2-3enc.jpg" class="card-img-top" alt="...">
+			  <div class="card-body">
+			    <h5 class="card-title">Segundo y Tercer Encuentro de los Talleres de Capacitación de "AUTOCUIDADO Y EMOCIONES" para No Docentes de la FI UNJu</h5>
+			    <p class="card-text">Durante los días 15 y 22 de mayo, se llevaron a cabo con éxito el segundo y tercer encuentro de los Talleres de Capacitación de "AUTOCUIDADO Y EMOCIONES" destinados a los no docentes de la Facultad de Ingeniería de la Universidad Nacional de Jujuy (FI UNJu). Ambas sesiones se realizaron de 8:00 a 9:00 a.m. en el Aula 15 de la Facultad de Ingeniería.</p><br>
+			    <a href="https://www.fi.unju.edu.ar/noticias/categorias/51-secyp-fi/unju-saludable/4582-segundo-y-tercer-encuentro-de-los-talleres-de-capacitacion-de-autocuidado-y-emociones-para-no-docentes-de-la-fi-unju.html" class="btn btn-primary">Ir a la noticia</a>
+			  </div>
+			</div>
+				<div class="card col-3" style="width: 20rem;">
+			  	<img src="https://fi.unju.edu.ar/images/2024-Noticias/DEFENSAS-TRABAJO-FINAL/defensa-inf-casasola-aracena.jpg" class="card-img-top" alt="...">
+			  <div class="card-body">
+			    <h5 class="card-title">Defensa de Proyecto Final | Ingeniería Informática - 06 de junio/2024</h5>
+			    <p class="card-text">Angel Eduardo CASASOLA y Anahi Isabel Roberta ARACENA, estudiantes de la carrera Ingeniería Informática de la Facultad de Ingeniería (UNJu), realizará la defensa de su Proyecto Final de Grado denominado:</p><br>
+				<p class="card-text"><strong>"PROTOTIPO DE UN CUADRO DE MANDO INTEGRAL PARA EL PODER JUDICIAL DE JUJUY"</strong></p>
+			    <a href="https://www.fi.unju.edu.ar/trabajos-proyectos-finales/4584-defensa-de-proyecto-final-ingenieria-informatica-06-06-2024.html" class="btn btn-primary">Ir a la Noticia</a>
+			  </div>
+			</div>
+				<div class="card card-der col-3" style="width: 20rem;">
+			  <img src="https://fi.unju.edu.ar/images/2024-Noticias/acta-acuerdo-perico.jpg" class="card-img-top" alt="...">
+			  <div class="card-body">
+			    <h5 class="card-title">Renovación de convenio académico entre la Facultad de Ingeniería y el Municipio de la Ciudad Perico</h5>
+			    <p class="card-text">En horas de la mañana del jueves 23 de mayo del presente año, la Facultad de Ingeniería de la UNJu realizó la firma del acta acuerdo de colaboración académica con la Municipalidad de la Ciudad de Perico en las oficinas de la intendencia.</p><br>
+			    <a href="#" class="btn btn-primary">Ir a la Noticia Completa</a>
+			  </div>
+			</div>
+	</section>
+	
+
+	
+		<div class="accordion" id="accordionNotices" data-th-fragment="acordeon">
+				<h3>Noticias Importantes</h3>
+				  <div class="accordion-item">
+				    <h2 class="accordion-header">
+				      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+				        Presentación del libro "EL HIDRÓGENO Y EL LITIO ACTORES FUNDAMENTALES EN LA TRANSICIÓN ENERGÉTICA"
+				      </button>
+				    </h2>
+				    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+				      <div class="accordion-body">
+				        <strong>Noticia importante del día.</strong> El jueves pasado se llevó a cabo la presentación oficial del libro titulado “El hidrógeno y el litio: actores fundamentales en la transición energética”, elaborado por 18 profesionales, investigadores y docentes del campo de estudio. Entre ellos se destaca el Dr. Daniel Ernesto Galli, docente de la Facultad de Ingeniería de la Universidad Nacional de Jujuy (UNJu) y titular de la cátedra de Termodinámica.
+							La apertura estuvo a cargo de la vicedecana, la Ing. María Esther Alfaro, acompañada por una de las responsables de la edición de la obra, la Ing. Teresa Pérez (FIUBA), y el Dr. Daniel Ernesto Galli. En el evento participaron personalidades del sector de la industria, la Secretaría de Extensión, Coordinación y Planificación de la Facultad de Ingeniería de la UNJu, la Esp. Ing. Margarita Ivanovich, estudiantes, docentes e invitados especiales.
+				      </div>
+				    </div>
+				  </div>
+				  <div class="accordion-item">
+				    <h2 class="accordion-header">
+				      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+				        Curso de posgrado: "Derecho e Inteligencia Artificial"
+				      </button>
+				    </h2>
+				    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+				      <div class="accordion-body">
+				        <strong>Cuestionario a Rellenar.</strong>La inscripción al curso se realiza completando el siguiente formulario:
+
+						<a href="#">https://docs.google.com/forms/u/2/d/1Fi8wJ2rz65Sms37cjcQD158rd3zWzYrtP8251O5jxSQ/edit?usp=drive_web</a>
+						
+						Una vez hecha la inscripción se debe realizar el pago mediante transferencia al siguiente alias: COOPERADORA.FACULTAD (todo con mayúsculas y separadas por un punto).
+						
+						Una vez realizada la transferencia, se deberá completar el siguiente formulario con los datos de facturación y adjuntar el comprobante.
+						<a href="#">https://docs.google.com/forms/u/2/d/1UtfuSE5IUBljVDq_WaIN5XqfAEthZ9ss_RtMo8SKquI/edit?usp=drive_web</a>
+						
+						Consultas: coordinacionposgrado@fi.unju.edu.ar
+			
+			              cibercrimen@fi.unju.edu.ar - 388-4207007
+				      </div>
+				    </div>
+				  </div>
+				  <div class="accordion-item">
+				    <h2 class="accordion-header">
+				      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+				        La UNJu y el Municipio de Palpalá lanzaron el programa Ciudadanía Digital UNJu. Conectando Oportunidades
+				      </button>
+				    </h2>
+				    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+				      <div class="accordion-body">
+				        <strong>Noticia en Palpalá.</strong>En el marco de las acciones que en conjunto vienen desarrollando la Universidad Nacional de Jujuy y la Municipalidad de Palpalá, se presentó una nueva iniciativa destinada a personas mayores de 16 años con el objetivo de brindar acceso a herramientas digitales.
+				      </div>
+				    </div>
+				  </div>
+				</div>
+	
+	
+	</main>
+	
+		<aside class="col-3 aside">
+			<div class="bloque-aside">
+				<h3>Biblioteca Digital CID UNJu</h3>
+				<a href="https://www.bidi.la" target="_blank" >
+				<img alt="Biblioteca Digital CID UNJu" src="/img/CID-Ingenieria.jpeg" class="img-aside">
+				</a>
+			</div>	
+			<div class="bloque-aside">
+				<h3>Bibliotecas Digitales</h3>
+				<a href="https://virtual.unju.edu.ar/bibliotecas/" target="_blank">
+				<img alt="Biblioteca Digital CID UNJu" src="/img/bibliodig.png" class="img-aside">
+				</a>
+			</div>
+			<div class="bloque-aside">
+				<h3>Avisos Recientes</h3>
+				<div class="bloque-aside">
+				<a href="#">Noticia Importante Numero 1</a><br>
+				<a href="#">Noticia Importante Numero 2</a>
+				</div>
+				<div class="bloque-aside">
+				<a href="#">Noticia Importante Numero 3</a><br>
+				<a href="#">Noticia Importante Numero 4</a>
+				</div>
+				<div class="bloque-aside">
+				<a href="#">Noticia Importante Numero 5</a><br>
+				<a href="#">Noticia Importante Numero 6</a>
+				</div>
+			</div>
+			<div class="bloque-aside">
+				<h3>Calendario Escolar</h3>
+				<div class="bloque-aside">
+				<a href="#">Noticia Importante Numero 1</a><br>
+				<a href="#">Noticia Importante Numero 2</a>
+				</div>
+				<div class="bloque-aside">
+				<a href="#">Noticia Importante Numero 3</a><br>
+				<a href="#">Noticia Importante Numero 4</a>
+				</div>
+				<div class="bloque-aside">
+				<a href="#">Noticia Importante Numero 5</a><br>
+				<a href="#">Noticia Importante Numero 6</a>
+				</div>
+			</div>
+		</aside>
+	</div>
+</div>
+	<footer id="contacto" class="footer-page">
+	<div data-th-replace="~{fragments/footer::footer}"></div>
+	</footer>
+
+	
+<script type="text/javascript" src="js/materialize.min.js"></script>	
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<!--<script data-th-src="/web_jars/bootstrap"></script>-->
+</body>
+</html>
