@@ -27,6 +27,7 @@ public class DocenteServiceImp implements DocenteService {
     public void guardarDocente(DocenteDTO docente) {
         LOGGER.info("Iniciando método guardarDocente");
         docenteMapDTO.convertirDocenteDTOADocente(docente);
+        docente.setEstado(true);
         docenteRepository.save(docenteMapDTO.convertirDocenteDTOADocente(docente));
         LOGGER.info("Docente guardado exitosamente");
     }
