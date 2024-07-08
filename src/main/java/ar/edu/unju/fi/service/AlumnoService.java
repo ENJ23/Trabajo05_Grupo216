@@ -11,9 +11,10 @@ public interface AlumnoService {
 	public void guardarAlumno(Alumno alumnoParaGuardar);
 	public List<Alumno> mostrarAlumnos();
 	public void borrarAlumno(String lu);
-	public AlumnoDTO buscarAlumno(String alumno);
-	public void modificarAlumno(AlumnoDTO alumnoModificada);
+	public Alumno buscarAlumno(String alumno);
+	public void modificarAlumno(Alumno alumnoModificado);
 	public Alumno findAlumnoByLU(String lu);
 	public List<Alumno> findAlumnoByCarrera(String codigo);
+	void borrarRelaciones(Alumno alumno);
 	
 }
