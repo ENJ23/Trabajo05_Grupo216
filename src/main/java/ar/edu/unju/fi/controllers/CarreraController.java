@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unju.fi.DTO.CarreraDTO;
 import ar.edu.unju.fi.model.Alumno;
 import ar.edu.unju.fi.model.Carrera;
 import ar.edu.unju.fi.model.Materia;
@@ -49,7 +48,8 @@ public class CarreraController {
     public ModelAndView saveCarrera(@ModelAttribute("nuevaCarrera") Carrera carrera) {
         ModelAndView modelView = new ModelAndView("listaDeCarreras");
         try {
-            for (Materia m : carrera.getMaterias()) {
+            
+        	for (Materia m : carrera.getMaterias()) {
                 m.setCarrera(carrera);
             }
 
@@ -68,6 +68,16 @@ public class CarreraController {
         modelView.addObject("listadoCarreras", carreraService.mostrarCarreras());
         return modelView;
     }
+    
+    @GetMapping("/listadoCarreras")
+	public ModelAndView listarCarreras() {
+		
+		ModelAndView modelView = new ModelAndView("listaDeCarreras");
+		modelView.addObject("listadoCarreras", carreraService.mostrarCarreras() );
+		return modelView;
+		
+		
+	}
 
     @GetMapping("/borrarCarrera/{codigo}")
     public ModelAndView deleteCarreraDelListado(@PathVariable(name="codigo") String codigo) {
@@ -86,19 +96,25 @@ public class CarreraController {
 
     @GetMapping("/modificarCarrera/{codigo}")
     public ModelAndView editCarrera(@PathVariable(name="codigo") String codigo) {
-        CarreraDTO carreraParaModificar = carreraService.buscarCarrera(codigo);
+        Carrera carreraParaModificar = carreraService.buscarCarrera(codigo);
+        carreraService.borrarRelaciones(carreraParaModificar);
         ModelAndView modelView = new ModelAndView("formCarrera");
         modelView.addObject("nuevaCarrera", carreraParaModificar);
+        modelView.addObject("materias", materiaService.mostrarMateria());
+        modelView.addObject("alumnos", alumnoService.mostrarAlumnos());
         modelView.addObject("band", true);
         return modelView;
     }
 
     @PostMapping("/modificarCarrera")
-    public ModelAndView updateCarrera(@ModelAttribute("nuevaCarrera") CarreraDTO carreraModificada) {
+    public ModelAndView updateCarrera(@ModelAttribute("nuevaCarrera") Carrera carreraModificada) {
         ModelAndView modelView = new ModelAndView("listaDeCarreras");
-        try {
+        try {            
+        	carreraModificada.getAlumnos().forEach(a -> a.setCarrera(carreraModificada));
+			carreraModificada.getMaterias().forEach(m -> m.setCarrera(carreraModificada));
+        	carreraModificada.setEstado(true);
             carreraService.modificarCarrera(carreraModificada);
-            carreraModificada.setEstado(true);
+
         } catch (Exception e) {
             modelView.addObject("errors", true);
             modelView.addObject("modificarCarreraErrorMessage", "Error al modificar en la BD: " + e.getMessage());
