@@ -41,7 +41,7 @@
       <td data-th-text="${alumno.fechadenacimiento}"></td>
       <td data-th-text="${alumno.domicilio}"></td>
       <td data-th-text="${alumno.lu}"></td>
-      <td data-th-text="${alumno.carrera.nombre}"></td>
+      <td data-th-text="${alumno.carrera != null ? alumno.carrera.nombre : 'Sin Carrera'}"></td>
     </tr>
   </tbody>
 </table>

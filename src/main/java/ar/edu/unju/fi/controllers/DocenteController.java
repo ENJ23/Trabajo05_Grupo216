@@ -17,7 +17,7 @@ import ar.edu.unju.fi.service.*;
 @Controller
 public class DocenteController {
     
-    @Autowired
+	@Autowired
     Docente nuevoDocente;
 
     @Autowired
@@ -49,6 +49,16 @@ public class DocenteController {
         return modelView;
     }
 
+    @GetMapping("/listadoDocentes")
+	public ModelAndView listarDocentes() {
+		
+		ModelAndView modelView = new ModelAndView("listaDeDocentes");
+		modelView.addObject("listadoDocentes", docenteService.mostrarDocentes() );
+		return modelView;
+		
+		
+	}
+    
     @GetMapping("/eliminarDocente/{legajo}")
     public ModelAndView deleteDocenteDelListado(@PathVariable(name = "legajo") String legajo) {
         ModelAndView modelView = new ModelAndView("listaDeDocentes");
