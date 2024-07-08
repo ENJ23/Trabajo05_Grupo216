@@ -48,7 +48,7 @@ public class FiltrarAlumnosPorMateriaController {
     	 modelView.addObject("materiaSeleccionada", materia);
          modelView.addObject("alumnosFiltrados", inscripcionService.findInscripByMateria(materia));
         //modelView.addObject("alumnosFiltrados", alumnosFiltrados);
-        
+
 
         return modelView; 
     }

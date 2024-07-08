@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-
+import ar.edu.unju.fi.model.Carrera;
 import ar.edu.unju.fi.model.Materia;
 import ar.edu.unju.fi.service.CarreraService;
 import ar.edu.unju.fi.service.DocenteService;
@@ -43,9 +44,10 @@ public class MateriaController {
 
     @PostMapping("/guardarMateria")
     public ModelAndView guardarMateria(@ModelAttribute("nuevaMateria") Materia materiaParaGuardar) {
-        ModelAndView modelView = new ModelAndView("listaDeMaterias");
+    	ModelAndView modelView = new ModelAndView();
         try {
             if (materiaService.existeMateria(materiaParaGuardar)) {
+            	modelView.setViewName("formMateria");
                 modelView.addObject("errors", true);
                 modelView.addObject("cargaMateriaErrorMessage", "La materia ya existe en la base de datos");
             } else {
@@ -57,9 +59,19 @@ public class MateriaController {
             modelView.addObject("cargaMateriaErrorMessage", "Error al cargar en la BD: " + e.getMessage());
             System.out.println(e.getMessage());
         }
+        modelView.setViewName("listaDeMaterias");
         modelView.addObject("listadoMaterias", materiaService.mostrarMateria());
         return modelView;
     }
+    @GetMapping("/listadoMaterias")
+  	public ModelAndView listarMaterias() {
+  		
+  		ModelAndView modelView = new ModelAndView("listaDeMaterias");
+  		modelView.addObject("listadoMaterias", materiaService.mostrarMateria() );
+  		return modelView;
+  		
+  		
+  	}
 
     @GetMapping("/borrarMateria/{codigo}")
     public ModelAndView deleteMateriaDelListado(@PathVariable(name="codigo") String codigo) {
@@ -77,10 +89,14 @@ public class MateriaController {
 
     @GetMapping("/modificarMateria/{codigo}")
     public ModelAndView editMateria(@PathVariable(name="codigo") String codigo) {
-        ModelAndView modelView = new ModelAndView("formMateria");
+        Materia materia = materiaService.buscarMateria(codigo);
+        if (materia.getCarrera() != null) materiaService.borrarRelaciones(materia);
+    	ModelAndView modelView = new ModelAndView("formMateria");
         try {
             Materia materiaParaModificar = materiaService.buscarMateria(codigo);
             modelView.addObject("nuevaMateria", materiaParaModificar);
+            modelView.addObject("carreras", carreraService.mostrarCarreras());
+            modelView.addObject("doc", docenteService.mostrarDocentes());
             modelView.addObject("band", true);
         } catch (Exception e) {
             modelView.addObject("errors", true);
@@ -91,18 +107,19 @@ public class MateriaController {
     }
 
     @PostMapping("/modificarMateria")
-    public ModelAndView updateMateria(@ModelAttribute("nuevaMateria") MateriaDTO materiaModificada) {
+    public ModelAndView updateMateria(@ModelAttribute("nuevaMateria") Materia materiaModificada) {
         ModelAndView modelView = new ModelAndView("listaDeMaterias");
+        
         try {
             materiaService.modificarMateria(materiaModificada);
-            materiaModificada.setEstado(true);
             modelView.addObject("listadoMaterias", materiaService.mostrarMateria());
         } catch (Exception e) {
             modelView.addObject("errors", true);
             modelView.addObject("modificarMateriaErrorMessage", "Error al modificar la materia en la BD: " + e.getMessage());
             System.out.println(e.getMessage());
         }
+        modelView.addObject("listadoMaterias", materiaService.mostrarMateria());
         return modelView;
     }
-}
 
+}
