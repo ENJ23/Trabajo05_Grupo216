@@ -38,7 +38,7 @@
       <td data-th-text="${alumno.fechadenacimiento}"></td>
       <td data-th-text="${alumno.domicilio}"></td>
       <td data-th-text="${alumno.lu}"></td>
-      <td data-th-text="${alumno.carrera.nombre}"></td>
+      <td data-th-text="${alumno.carrera != null ? alumno.carrera.nombre : 'Sin Carrera'}"></td>
       <td>
       		<a data-th-href="@{'/eliminarAlumno/'+${alumno.lu}} " class="btn btn-danger">Borrar</a>
       		<a data-th-href="@{'/modificarAlumno/'+${alumno.lu}} " class="btn btn-warning">Modificar</a>
@@ -46,6 +46,12 @@
     </tr>
   </tbody>
 </table>
+
+	<p data-th-if="${errors}" data-th-text="${borrarAlumnoErrorMessage}" class="text-warning"> </p>
+	<p data-th-if="${errors}" data-th-text="${cargaAlumnoErrorMessage}" class="text-warning"> </p>
+	<p data-th-if="${errors}" data-th-text="${modificarAlumnoErrorMessage}" class="text-warning"> </p>
+	
+
 </div>
 	<footer id="contacto" class="footer-page">
 		<div data-th-replace="~{fragments/footer::footer}"></div>

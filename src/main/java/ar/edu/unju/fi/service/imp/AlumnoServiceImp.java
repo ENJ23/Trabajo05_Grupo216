@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ar.edu.unju.fi.DTO.AlumnoDTO;
 import ar.edu.unju.fi.map.AlumnoMapDTO;
 import ar.edu.unju.fi.model.Alumno;
 import ar.edu.unju.fi.repository.AlumnoRepository;
@@ -53,12 +52,12 @@ public class AlumnoServiceImp implements AlumnoService{
 
 
 		@Override
-		public AlumnoDTO buscarAlumno(String lu) {
+		public Alumno buscarAlumno(String lu) {
 			
 			List<Alumno> todosLosAlumnos = alumnoRepository.findAll();
 			for (Alumno alumno1 : todosLosAlumnos){
 				if (alumno1.getLu().equals(lu)){
-					return alumnoMapDTO.convertirAlumnoAAlumnoDTO(alumno1);
+					return alumno1;
 				}
 			}
 			return null;
@@ -95,26 +94,14 @@ public class AlumnoServiceImp implements AlumnoService{
 		}
 
 		@Override
-		public void modificarAlumno(AlumnoDTO alumnoModificado) {
-			AlumnoDTO alumnoBuscado = buscarAlumno(alumnoModificado.getLu());
-		    if (alumnoBuscado != null) {
-		    	
-			List<Alumno> todosLosAlumnos = alumnoRepository.findAll();
-			
-				for (int i = 0 ; i < todosLosAlumnos.size() ; i++) {
-					
-					AlumnoDTO alumno = alumnoMapDTO.convertirAlumnoAAlumnoDTO(todosLosAlumnos.get(i));
-					
-					if (alumno.getLu().equals(alumnoModificado.getLu())) {
-						todosLosAlumnos.set(i, alumnoMapDTO.convertirAlumnoDTOAAlumno(alumnoModificado));
-						break;
-						}
-					}
-				alumnoRepository.saveAll(todosLosAlumnos);
-			   } 
-		    	else {
-		    		System.out.println("El docente no se ha encontrado ");
-		    }
+		public void modificarAlumno(Alumno alumnoModificado) {
+			alumnoRepository.save(alumnoModificado);
+		}
+		
+		@Override
+		public void borrarRelaciones(Alumno alumno) {
+			alumno.setCarrera(null);
+			alumnoRepository.save(alumno);
 		}
 
 
