@@ -44,9 +44,10 @@ public class MateriaController {
 
     @PostMapping("/guardarMateria")
     public ModelAndView guardarMateria(@ModelAttribute("nuevaMateria") Materia materiaParaGuardar) {
-        ModelAndView modelView = new ModelAndView("listaDeMaterias");
+    	ModelAndView modelView = new ModelAndView();
         try {
             if (materiaService.existeMateria(materiaParaGuardar)) {
+            	modelView.setViewName("formMateria");
                 modelView.addObject("errors", true);
                 modelView.addObject("cargaMateriaErrorMessage", "La materia ya existe en la base de datos");
             } else {
@@ -58,9 +59,19 @@ public class MateriaController {
             modelView.addObject("cargaMateriaErrorMessage", "Error al cargar en la BD: " + e.getMessage());
             System.out.println(e.getMessage());
         }
+        modelView.setViewName("listaDeMaterias");
         modelView.addObject("listadoMaterias", materiaService.mostrarMateria());
         return modelView;
     }
+    @GetMapping("/listadoMaterias")
+  	public ModelAndView listarMaterias() {
+  		
+  		ModelAndView modelView = new ModelAndView("listaDeMaterias");
+  		modelView.addObject("listadoMaterias", materiaService.mostrarMateria() );
+  		return modelView;
+  		
+  		
+  	}
 
     @GetMapping("/borrarMateria/{codigo}")
     public ModelAndView deleteMateriaDelListado(@PathVariable(name="codigo") String codigo) {
@@ -78,69 +89,37 @@ public class MateriaController {
 
     @GetMapping("/modificarMateria/{codigo}")
     public ModelAndView editMateria(@PathVariable(name="codigo") String codigo) {
-        ModelAndView modelView = new ModelAndView("formMateria");
-       // try {
+        Materia materia = materiaService.buscarMateria(codigo);
+        if (materia.getCarrera() != null) materiaService.borrarRelaciones(materia);
+    	ModelAndView modelView = new ModelAndView("formMateria");
+        try {
             Materia materiaParaModificar = materiaService.buscarMateria(codigo);
             modelView.addObject("nuevaMateria", materiaParaModificar);
-            modelView.addObject("band", true);
-            modelView.addObject("doc", docenteService.mostrarDocentes());
             modelView.addObject("carreras", carreraService.mostrarCarreras());
-        //} catch (Exception e) {
-        //    modelView.addObject("errors", true);
-        //    modelView.addObject("buscarMateriaErrorMessage", "Error al buscar la materia en la BD: " + e.getMessage());
-        //    System.out.println(e.getMessage());
-        //}
+            modelView.addObject("doc", docenteService.mostrarDocentes());
+            modelView.addObject("band", true);
+        } catch (Exception e) {
+            modelView.addObject("errors", true);
+            modelView.addObject("buscarMateriaErrorMessage", "Error al buscar la materia en la BD: " + e.getMessage());
+            System.out.println(e.getMessage());
+        }
         return modelView;
     }
 
     @PostMapping("/modificarMateria")
-    public ModelAndView updateMateria(@ModelAttribute("nuevaMateria") MateriaDTO materiaModificada) {
+    public ModelAndView updateMateria(@ModelAttribute("nuevaMateria") Materia materiaModificada) {
         ModelAndView modelView = new ModelAndView("listaDeMaterias");
         
         try {
-            Materia materiaExistente = materiaService.buscarMateria(materiaModificada.getCodigo());
-            
-            if (materiaExistente != null) {
-                // Actualiza los campos de la materia existente con los valores de la materia modificada
-                materiaExistente.setCodigo(materiaModificada.getCodigo());
-                materiaExistente.setNombre(materiaModificada.getNombre());
-                materiaExistente.setCantidad(materiaModificada.getCantidad());
-                materiaExistente.setModalidad(materiaModificada.getModalidad());
-                materiaExistente.setCurso(materiaModificada.getCurso());
-                materiaExistente.setCarrera(materiaModificada.getCarrera());
-                materiaExistente.setDocentes(materiaModificada.getDocente());
-                materiaExistente.setEstado(true);
-                // Actualiza otros campos según sea necesario
-                
-                materiaService.modificarMateria(materiaExistente);
-                materiaExistente.setEstado(true);
-                modelView.addObject("listadoMaterias", materiaService.mostrarMateria());
-            } else {
-                modelView.addObject("errors", true);
-                modelView.addObject("modificarMateriaErrorMessage", "La materia a modificar no fue encontrada en la BD");
-            }
-        } catch (Exception e) {
-            modelView.addObject("errors", true);
-            modelView.addObject("modificarMateriaErrorMessage", "Error al modificar la materia en la BD: " + e.getMessage());
-            System.out.println(e.getMessage());
-        }
-        
-        return modelView;
-        
-        
-        
-        
-        
-        /*try {
             materiaService.modificarMateria(materiaModificada);
-            materiaModificada.setEstado(true);
             modelView.addObject("listadoMaterias", materiaService.mostrarMateria());
         } catch (Exception e) {
             modelView.addObject("errors", true);
             modelView.addObject("modificarMateriaErrorMessage", "Error al modificar la materia en la BD: " + e.getMessage());
             System.out.println(e.getMessage());
         }
+        modelView.addObject("listadoMaterias", materiaService.mostrarMateria());
         return modelView;
-    }*/
-}
+    }
+
 }

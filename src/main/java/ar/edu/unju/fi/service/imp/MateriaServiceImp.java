@@ -5,7 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ar.edu.unju.fi.DTO.MateriaDTO;
 import ar.edu.unju.fi.map.MateriaMAPDTO;
 import ar.edu.unju.fi.model.Materia;
 import ar.edu.unju.fi.repository.MateriaRepository;
@@ -39,32 +38,27 @@ public class MateriaServiceImp implements MateriaService {
     @Override
     public void borrarMateria(String codigo) {
         LOGGER.info("Iniciando método borrarMateria con código: " + codigo);
-        List<Materia> todasLasMaterias = materiaRepository.findAll();
-        for (int i = 0; i < todasLasMaterias.size(); i++) {
-            Materia materia = todasLasMaterias.get(i);
-            if (materia.getCodigo().equals(codigo)) {
-                materia.setEstado(false);
-                materiaRepository.save(materia);
-                LOGGER.info("Materia eliminada exitosamente");
-                break;
+        List<Materia> materias = materiaRepository.findAll();
+		materias.forEach(materia -> {
+			if(materia.getCodigo().equals(codigo)) {
+				materia.setDocentes(null);
+				materia.setEstado(false);
+				materiaRepository.save(materia); 
+				LOGGER.info("Materia eliminada exitosamente");
+			}
+		});
+               
             }
-        }
-    }
 
     @Override
     public void modificarMateria(Materia materiaModificada) {
         LOGGER.info("Iniciando método modificarMateria");
         Materia materiaBuscada = buscarMateria(materiaModificada.getCodigo());
+        
         if (materiaBuscada != null) {
-            List<Materia> todasLasMaterias = materiaRepository.findAll();
-            for (int i = 0; i < todasLasMaterias.size(); i++) {
-                MateriaDTO materia = materiaMapDTO.convertirMateriaAMateriaDTO(todasLasMaterias.get(i));
-                if (materia.getCodigo().equals(materiaModificada.getCodigo())) {
-                    todasLasMaterias.set(i,materiaModificada);
-                    break;
-                }
-            }
-            materiaRepository.saveAll(todasLasMaterias);
+        	materiaModificada.setEstado(true);
+    		materiaRepository.save(materiaModificada);
+            
             LOGGER.info("Materia modificada exitosamente");
         } else {
             LOGGER.warn("La materia no se ha encontrado");
@@ -104,5 +98,12 @@ public class MateriaServiceImp implements MateriaService {
         Materia existingMateria = materiaRepository.findMateriaByCodigo(materia.getCodigo());
         return existingMateria != null;
     }
+
+	@Override
+	public void borrarRelaciones(Materia materia) {
+		// TODO Auto-generated method stub
+		materia.setCarrera(null);
+		materiaRepository.save(materia);
+	}
 
 }
